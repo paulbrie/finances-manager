@@ -8,7 +8,6 @@ var movements = {
           console.log("ERROR:model/movements/get", err);
           callback({result: false});
         } else {
-          console.log(rows);
           callback({result: true, data: rows});    
         }
     });
