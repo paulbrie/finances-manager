@@ -1,0 +1,12 @@
+{
+  "name": "finances-manager",
+  "description": "This is an open-source personal finances manager tool.",
+  "license":"MIT",
+  "repository":"https://github.com/paulbrie/finances-manager",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.10.6",
+    "mysql": "^2.5.4",
+    "body-parser": "~1.12.2"
+  }
+}
