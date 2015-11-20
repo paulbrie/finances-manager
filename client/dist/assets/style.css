@@ -1,0 +1,62 @@
+/*body{*/
+
+/*background: url(http://www.trackmyfone.com/blog/wp-content/uploads/2015/08/money-management-TMF.jpg);*/
+
+/*background-repeat: no-repeat;*/
+
+/*}*/
+
+.vertical-offset-100 {
+  padding-top: 100px;
+  margin-right: 250px;
+}
+
+.income-contente {
+  margin-top: 50px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.header-component {
+  color: white;
+  overflow: hidden;
+  background: #243600;
+  margin-left: -220px;
+}
+
+.header-component li a {
+  color: grey;
+}
+
+.header-component li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.all-space {
+  display: inline-block;
+  width: 100%;
+  border: none;
+}
+
+.addCategory {
+  padding: 10px;
+  border: none;
+  background: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+th,
+td {
+  text-align: center;
+}

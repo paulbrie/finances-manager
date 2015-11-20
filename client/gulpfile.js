@@ -9,7 +9,6 @@
 */
 var gulp = require('gulp'); //gulp: automated task runner
 var browserify = require('browserify'); //browserfy: organizes and compiles code distributed in multiple modules
-var reactify = require('reactify'); //reactify: translates the jsx code to js
 var myCss = require('gulp-import-css');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');

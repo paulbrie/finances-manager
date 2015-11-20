@@ -16,13 +16,125 @@ function isBool(val) {
  */
 var dictionary = {
 
-    movements_get: {
-        expose: true,
-        model: 'movements',
-        method: 'get',
-        params: {},
-        authenticated: false
-    }};
+  movements_get: {
+    expose: true,
+    model: 'movements',
+    method: 'get',
+    params: {},
+    authenticated: false
+  },
+  movements_delete: {
+    expose: true,
+    model: 'movements',
+    method: 'del',
+    params: {
+      id: {
+        constraint: "[0-9]+",
+        required: true
+      }
+    },
+    authenticated: false
+  },
+  movements_add: {
+    expose: true,
+    model: 'movements',
+    method: 'add',
+    params: {
+      date: {
+        constraint: ".+",
+        required: true
+      },
+      from: {
+        constraint: "[0-9]",
+        required: true
+      },
+      to: {
+        constraint: "[0-9]",
+        required: true
+      },
+      amount: {
+        constraint: ".+",
+        required: true
+      },
+      title: {
+        constraint: ".+",
+        required: true 
+      },
+      description: {
+        constraint: ".+",
+        required: false 
+      },
+      type: {
+        constraint: "[0-9]",
+        required: true  
+      }
+    },
+    authenticated: false
+  },
+  movements_update: {
+    expose: true,
+    model: 'movements',
+    method: 'update',
+    params: {
+      id: {
+        constraint: "[0-9]+",
+        required: true
+      },
+      date: {
+        constraint: ".+",
+        required: true
+      },
+      from: {
+        constraint: "[0-9]",
+        required: true
+      },
+      to: {
+        constraint: "[0-9]",
+        required: true
+      },
+      amount: {
+        constraint: ".+",
+        required: true
+      },
+      title: {
+        constraint: ".+",
+        required: true 
+      },
+      description: {
+        constraint: ".+",
+        required: false 
+      },
+      type: {
+        constraint: "[0-9]",
+        required: true  
+      }
+    },
+    authenticated: false
+  },
+  categories_get: {
+    expose: true,
+    model: 'categories',
+    method: 'get',
+    params: {},
+    authenticated: false  
+  },
+  users_login: {
+    expose: true,
+    model: 'users',
+    method: 'login',
+    params: {
+      user: {
+        constraint: ".+",
+        required: true
+      },
+      password: {
+        constraint: ".+",
+        required: true
+      }
+    },
+    authenticated: false
+  }
+};
 
 function loadResource(req, callback) {
     console.log("\n\n###### API loadResource ######");
@@ -45,6 +157,10 @@ function loadResource(req, callback) {
         var method          = req.params.method;
         var externalParams  = req.params || {};
     }
+    
+    console.log("params", req);
+
+    
     console.log("------- resource/call -------\n", "       " + resource + "/" + method);
     console.log("------- externalParams -------\n", externalParams);
     console.log("------- callback -------\n", callback);
@@ -90,6 +206,9 @@ function loadResource(req, callback) {
                             }
                             params[param] = externalParams[key];
                         } else {
+                            if(endpoint.params[param].required) {
+                              check += "parameter " + param + " is required";  
+                            }
                             console.log("parameter " + param + " does not exist");
                         }
 
