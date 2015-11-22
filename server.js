@@ -1,7 +1,7 @@
 'use strict';
 
 // constants
-var PORT 	= 80;
+var PORT 	= 8080;
 var SERVER	= "0.0.0.0";
 
 // variables
