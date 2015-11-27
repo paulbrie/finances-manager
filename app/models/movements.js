@@ -2,7 +2,7 @@ var db = require("./db").db;
 var movements = {
   
   get: function(callback) {
-    var sql = 'SELECT * FROM movements where valid = 1';
+    var sql = 'SELECT * FROM movements where valid = 1 order by date DESC';
     db.query(sql, function(err, rows) {
         console.log(callback);
         if(err) {
@@ -67,6 +67,18 @@ var movements = {
     console.log(movement);
     
     db.query('UPDATE movements SET ? WHERE id = ' + parseInt(args.id), movement, function(err, result) {
+      if(err) {
+        console.log("ERROR:model/movements/add", err);
+        callback({result: false, msg: err});  
+      } else {
+        callback({result: true, data: result});   
+      }
+    });
+  },
+  
+  del: function(callback, args) {
+    
+    db.query('UPDATE movements SET valid = 0 WHERE id = ' + parseInt(args.id), function(err, result) {
       if(err) {
         console.log("ERROR:model/movements/add", err);
         callback({result: false, msg: err});  

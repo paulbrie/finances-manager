@@ -15,7 +15,7 @@ function isBool(val) {
  * for example tasks_get maps /api/tasks/get with the model tasks and the method getTasks
  */
 var dictionary = {
-
+  
   movements_get: {
     expose: true,
     model: 'movements',
@@ -52,6 +52,7 @@ var dictionary = {
         constraint: "[0-9]",
         required: true
       },
+
       amount: {
         constraint: ".+",
         required: true
@@ -67,6 +68,10 @@ var dictionary = {
       type: {
         constraint: "[0-9]",
         required: true  
+      },
+      tags: {
+        constraint: ".+",
+        required: false
       }
     },
     authenticated: false
@@ -107,6 +112,10 @@ var dictionary = {
       type: {
         constraint: "[0-9]",
         required: true  
+      },
+      tags: {
+        constraint: ".+",
+        required: false
       }
     },
     authenticated: false
@@ -136,6 +145,7 @@ var dictionary = {
   }
 };
 
+
 function loadResource(req, callback) {
     console.log("\n\n###### API loadResource ######");
     // is the call done by the program itself?
@@ -158,7 +168,6 @@ function loadResource(req, callback) {
         var externalParams  = req.params || {};
     }
     
-    console.log("params", req);
 
     
     console.log("------- resource/call -------\n", "       " + resource + "/" + method);
@@ -229,18 +238,17 @@ function loadResource(req, callback) {
         console.log("###### API loadResource END ######\n\n");
     }
 }
-
 module.exports = function(app) {
-    return {
-        index: function(req, res, next) {
-            res.set('Content-Type', 'application/json');
-            loadResource(
-                req,
-                function(result) {
-                    res.send(result);
-                }
-            );
-        },
-        loadResource: loadResource
-    };
+  return  {
+    index: function(req, res, next) {
+        res.set('Content-Type', 'application/json');
+        loadResource(
+            req,
+            function(result) {
+                res.send(result);
+            }
+        );
+    },
+    loadResource: loadResource
+  };
 }
